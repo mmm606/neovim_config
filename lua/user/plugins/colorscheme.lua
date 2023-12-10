@@ -1,10 +1,11 @@
 
 local function config_function()  
-    vim.cmd.colorscheme("kanagawa-wave")
+    vim.cmd.colorscheme("solarized")
+    vim.opt.background = "light"
 end
 
 return {
-    "rebelot/kanagawa.nvim",
+    "shaunsingh/solarized.nvim",
     lazy = false,
     priority = 1000,
     config = config_function,
