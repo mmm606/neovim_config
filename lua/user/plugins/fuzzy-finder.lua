@@ -105,9 +105,9 @@ local function telescope_config()
 
     -- Now lets map keys that will interact activate telescope
     local builtin = require("telescope.builtin")
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-    vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-    vim.keymap.set('n', '<leader>fs', function() builtin.grep_string() end)
+    vim.keymap.set('n', '<leader>ff', builtin.find_files, {desc = "find file"})
+    vim.keymap.set('n', '<leader>fg', builtin.git_files, {desc = "find git file"})
+    vim.keymap.set('n', '<leader>fs', function() builtin.grep_string() end, {desc = "search for words"})
 end
 
 return {

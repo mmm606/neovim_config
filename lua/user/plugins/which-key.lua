@@ -95,6 +95,9 @@ return {
     init = function()
         vim.o.timeout = true
         vim.o.timeoutlen = 300
+        require("which-key").register({
+        f = {name = "file"}
+        }, {prefix = "<leader>"})
     end,
     opts = which_key_opts,
 }
