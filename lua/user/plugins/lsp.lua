@@ -1,6 +1,7 @@
 
 local function lsp_zero_config() 
     local lsp_zero = require('lsp-zero')
+    lsp_zero.extend_lspconfig()
 
     lsp_zero.on_attach(function(client, bufnr)
         -- see :help lsp-zero-keybindings

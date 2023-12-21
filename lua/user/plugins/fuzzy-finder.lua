@@ -23,7 +23,6 @@ local function telescope_config()
                     ["<C-v>"] = actions.select_vertical,
                     ["<C-t>"] = actions.select_tab,
 
-                    
                     ["<Up>"] = actions.preview_scrolling_up,
                     ["<Down>"] = actions.preview_scrolling_down,
                     -- ["<C-f>"] = actions.preview_scrolling_left,
@@ -99,9 +98,18 @@ local function telescope_config()
         -- extension_name = {
         --   extension_config_key = value,
         -- }
-        -- please take a look at the readme of the extension you want to configure
-      }
+            -- please take a look at the readme of the extension you want to configure
+            fzf = {
+                fuzzy = true,                    -- false will only do exact matching
+                override_generic_sorter = true,  -- override the generic sorter
+                override_file_sorter = true,     -- override the file sorter
+                case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                -- the default case_mode is "smart_case"
+            }
+        }
     }
+
+    telescope.load_extension('fzf') -- load the extension
 
     -- Now lets map keys that will interact activate telescope
     local builtin = require("telescope.builtin")
@@ -113,6 +121,10 @@ end
 return {
     'nvim-telescope/telescope.nvim', tag = '0.1.5',
     -- or                              , branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        {"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+        "nvim-tree/nvim-web-devicons",
+    },
     config = telescope_config,
 }
