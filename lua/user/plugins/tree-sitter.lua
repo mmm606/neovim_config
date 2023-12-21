@@ -43,14 +43,17 @@ local function config_function()
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection = "gnn", -- set to `false` to disable one of the mappings
-                    node_incremental = "grn",
-                    scope_incremental = "grc",
-                    node_decremental = "grm",
+                    init_selection = "<Leader>ss", -- set to `false` to disable one of the mappings
+                    node_incremental = "<Leader>si",
+                    scope_incremental = "<Leader>s-",
+                    node_decremental = "<Leader>s+",
                 },
             },
-        })
-    end
+        indent = {
+            enable = true
+        }
+    })
+end
 
 return {
     "nvim-treesitter/nvim-treesitter",
