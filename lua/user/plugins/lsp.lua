@@ -10,7 +10,7 @@ local function lsp_zero_config()
 
     require('mason').setup({})
     require('mason-lspconfig').setup({
-        ensure_installed = {''},
+        ensure_installed = {'lua_ls'},
         handlers = {
             lsp_zero.default_setup,
         },
@@ -21,7 +21,7 @@ return {
     {'williamboman/mason.nvim'},
     {'williamboman/mason-lspconfig.nvim'},
 
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', config = lsp_zero_config},
     {'neovim/nvim-lspconfig'},
     {'hrsh7th/cmp-nvim-lsp'},
     {'hrsh7th/nvim-cmp'},
