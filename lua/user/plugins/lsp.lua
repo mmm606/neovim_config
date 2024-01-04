@@ -1,14 +1,16 @@
 
-local function lsp_zero_config() 
+local function lsp_zero_config()
     local lsp_zero = require('lsp-zero')
     lsp_zero.extend_lspconfig()
 
-    lsp_zero.on_attach(function(client, bufnr)
+    -- We set up keybindings in which-key
+    -- lsp_zero.on_attach(function(_, bufnr)
         -- see :help lsp-zero-keybindings
         -- to learn the available actions
-        lsp_zero.default_keymaps({buffer = bufnr})
-    end)
+        -- lsp_zero.default_keymaps({buffer = bufnr})
+    -- end)
 
+    require("neodev").setup({}) -- This helps with the config, set it up before lsp
     require('mason').setup({})
     require('mason-lspconfig').setup({
         ensure_installed = {'lua_ls'},
@@ -18,13 +20,39 @@ local function lsp_zero_config()
     })
 end
 
+local function cmp_config()
+    local cmp = require("cmp")
+    local cmp_action = require("lsp-zero")
+    cmp.setup({
+        mapping = cmp.mapping.preset.insert({
+
+            ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+            ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+
+            -- `Enter` key to confirm completion
+            ['<CR>'] = cmp.mapping.confirm({select = false}),
+
+            -- Ctrl+Space to trigger completion menu
+            ['<C-Space>'] = cmp.mapping.complete(),
+
+            -- Navigate between snippet placeholder
+            -- ['<Tab>'] = cmp_action.luasnip_jump_forward(),
+            -- ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
+
+            -- Scroll up and down in the completion documentation
+            ['<C-M-j>'] = cmp.mapping.scroll_docs(4),
+            ['<C-M-k>'] = cmp.mapping.scroll_docs(-4),
+        })
+    })
+end
+
 return {
     {'williamboman/mason.nvim'},
     {'williamboman/mason-lspconfig.nvim'},
 
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', config = lsp_zero_config},
+    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', dependencies = "folke/neodev.nvim", config = lsp_zero_config},
     {'neovim/nvim-lspconfig'},
     {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/nvim-cmp'},
+    {'hrsh7th/nvim-cmp', config = cmp_config},
     {'L3MON4D3/LuaSnip'},
 }
