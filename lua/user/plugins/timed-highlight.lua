@@ -5,4 +5,7 @@ local function timed_highlight_config()
     })
 end
 
-return {dir = "~/custom_neovim_plugins/timed-highlight.nvim", config = timed_highlight_config}
+-- return {dir = "~/custom_neovim_plugins/timed-highlight.nvim", config = timed_highlight_config}
+return {
+    "MichaelMuz/timed-highlight.nvim", config = timed_highlight_config
+}
