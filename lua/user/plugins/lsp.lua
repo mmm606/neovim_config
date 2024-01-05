@@ -22,7 +22,7 @@ end
 
 local function cmp_config()
     local cmp = require("cmp")
-    local cmp_action = require("lsp-zero")
+    local cmp_action = require("lsp-zero").cmp_action()
     cmp.setup({
         mapping = cmp.mapping.preset.insert({
 
@@ -36,12 +36,16 @@ local function cmp_config()
             ['<C-Space>'] = cmp.mapping.complete(),
 
             -- Navigate between snippet placeholder
-            -- ['<Tab>'] = cmp_action.luasnip_jump_forward(),
-            -- ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
+            ['<Tab>'] = cmp_action.luasnip_jump_forward(),
+            ['<S-Tab>'] = cmp_action.luasnip_jump_backward(),
+            -- Not sure about supertab, could make it hard to not accept completion during snippet population
+            -- ['<Tab>'] = cmp_action.luasnip_supertab(),
+            -- ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 
             -- Scroll up and down in the completion documentation
             ['<C-M-j>'] = cmp.mapping.scroll_docs(4),
             ['<C-M-k>'] = cmp.mapping.scroll_docs(-4),
+
         })
     })
 end
