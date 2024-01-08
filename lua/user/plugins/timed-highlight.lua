@@ -7,5 +7,5 @@ end
 
 -- return {dir = "~/custom_neovim_plugins/timed-highlight.nvim", config = timed_highlight_config}
 return {
-    "MichaelMuz/timed-highlight.nvim", config = timed_highlight_config
+    "sahlte/timed-highlight.nvim", config = timed_highlight_config
 }
